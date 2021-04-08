@@ -1,0 +1,31 @@
+<launch>
+  <arg name="first_tb3"  default="tb3_0"/>
+  <arg name="second_tb3" default="tb3_1"/>
+  <arg name="third_tb3"  default="tb3_2"/>
+
+  <rosparam>
+    move_seconds: 7
+    move_velocity: 0.5
+    num_robots: 3
+    gain: 0.1
+    gain_yaw: 0.25
+    threshold_yaw: 0.52359877559
+    ns_prefix: "/tb3_"
+  </rosparam>
+
+
+  <group ns = "$(arg first_tb3)">   
+    <param name="id" value="0"/>
+    <node name="controller" pkg="mas" type="mas_node" output="screen"/>
+  </group>
+
+  <group ns = "$(arg second_tb3)">
+    <param name="id" value="1"/>
+    <node name="controller" pkg="mas" type="mas_node" />
+  </group>
+
+  <group ns = "$(arg third_tb3)">
+    <param name="id" value="2"/>
+    <node name="controller" pkg="mas" type="mas_node"/>
+  </group>
+</launch>

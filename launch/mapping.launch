@@ -1,0 +1,22 @@
+<launch>
+  <arg name="model" default="burger" doc="model type [burger, waffle, waffle_pi]"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find mas)/worlds/turtlebot3_square.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>  
+
+   <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro" />
+
+     <!-- run  
+        roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=gmapping
+        for mapping
+        roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=`rospack find mas`/maps/square.yaml
+        for navigation
+      -->
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -model tb3_0 -x 0 -y 0 -z 0 -Y 0 -param robot_description" />
+</launch>
