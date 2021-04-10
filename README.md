@@ -1,4 +1,4 @@
-# ros-distributed-rendezvous-contrrol
+# ros-distributed-rendezvous-control
 
 Consensus (rendezvous) control by three TurtleBot3s (TB3s).
 ![visualization](https://raw.githubusercontent.com/estshorter/ros-distributed-rendezvous-contrrol/visualization/visualization.gif)
